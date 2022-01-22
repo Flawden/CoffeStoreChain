@@ -1,7 +1,7 @@
-package Stores;
+package stores;
 
-import Stores.CoffeStore;
-import TypeOfCoffee.*;
+import stores.CoffeStore;
+import typeOfCoffee.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,52 +9,35 @@ import java.io.InputStreamReader;
 public class IzevskCoffeeStore extends CoffeStore {
 
     @Override
-    public void makeCapuccino(Coffee capuccino) {
-        super.makeCapuccino(capuccino);
-        System.out.println(capuccino.getName() + " готов к выдаче в кофе Ижевска. Приятного аппетита!");
+    public void setCoffeeStoreName() {
+        city = "Ижевск";
     }
 
     @Override
-    public void makeExpresso(Coffee expresso) {
-        super.makeAmericano(expresso);
-        System.out.println(expresso.getName() + " готов к выдаче в кофе Ижевска. Приятного аппетита!");
+    public void setFailChance() {
+        failChance = 20;
     }
 
-    public static void selectCoffee(CoffeStore coffeStore) {
-
-        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
-        Coffee coffeType;
-        int coffeeNum = 0;
-
-        System.out.println("\nДобро пожаловать наше кофе. Мы умеем готовить следующие напитки: \n" +
-                "1. Капучино \n" +
-                "2. Эспрессо \n" +
-                "Введите номер вашего заказа:");
-
-        try {
-            coffeeNum = Integer.parseInt(rd.readLine());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        switch(coffeeNum) {
-
-            case 1:
-                System.out.println("Ваш заказ принят, ожидайте...");
-                Cappuccino cappuccino = new Cappuccino();
-                coffeStore.makeCapuccino(cappuccino);
-                break;
-
-            case 2:
-                System.out.println("Ваш заказ принят, ожидайте...");
-                Expresso expresso = new Expresso();
-                coffeStore.makeExpresso(expresso);
-                break;
-
-            default:
-                break;
-        }
+    @Override
+    public void createCoffeList() {
+        listOfCoffee.add(new Coffee("Капучино"));
+        listOfCoffee.add(new Coffee("Макиато"));
+        listOfCoffee.add(new Coffee("Латте"));
     }
 
+    @Override
+    public void failSituation() {
+        numOfSituation = rnd.nextInt(1, 2);
+
+        switch (numOfSituation) {
+            case 1: {
+                System.out.println("Кажется ваш кофе еще не доставили. Мне жаль");
+                break;
+            }
+            case 2: {
+                System.out.println("Ваш кофе был похищен злостной группой боевых ежей. Мне жаль");
+                break;
+            }
+        }
+    }
 }
