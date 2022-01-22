@@ -1,5 +1,4 @@
-import Stores.*;
-import TypeOfCoffee.*;
+import stores.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,9 +11,22 @@ public class SelectCoffeeStore {
     //======================================================
     // Выбираем город - начало
 
-    public static int select() throws IOException {
-        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+    public static int start() throws IOException {
 
+        greetingMethod();
+        if (selectCity() == 1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+
+    }
+
+    // Выбираем город - конец
+    //======================================================
+
+    private static void greetingMethod() {
         System.out.println("Добро пожаловать на главную страницу нашей сети кофеен \"CoffeeShop\"" +
                 "Мы - огромная российская сеть кофеен по всей стране. У нас есть свои кофейни в следующих городах: \n" +
                 "1.Москва \n" +
@@ -27,74 +39,73 @@ public class SelectCoffeeStore {
                 "8.Самара \n" +
                 "9.Саратов \n \n" +
                 "Введите номер своего города, в котором вы бы хотели получить кофе:");
+    }
 
+    private static int selectCity() throws IOException {
+        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
         myCity = rd.readLine();
+
 
         switch (myCity) {
             case "1":
                 System.out.println("Ваш город: Москва...Ожидайте");
                 MoscowCoffeShop mosMakeCoffee = new MoscowCoffeShop();
-                mosMakeCoffee.selectCoffee(mosMakeCoffee);
+                mosMakeCoffee.coffeeStoreStart();
                 break;
 
             case "2":
                 System.out.println("Ваш город: Санкт-Питербург...Ожидайте");
                 StPetersburgCoffeeStore stMakeCoffee = new StPetersburgCoffeeStore();
-                stMakeCoffee.selectCoffee(stMakeCoffee);
+                stMakeCoffee.coffeeStoreStart();
                 break;
 
             case "3":
                 System.out.println("Ваш город: Челябинск...Ожидайте");
                 ChelyabinskCoffeeStore chelMakeCoffee = new ChelyabinskCoffeeStore();
-                chelMakeCoffee.selectCoffee(chelMakeCoffee);
+                chelMakeCoffee.coffeeStoreStart();
                 break;
 
             case "4":
                 System.out.println("Ваш город: Сатка...Ожидайте");
                 SatkaCoffeeStore satkaMakeCofee = new SatkaCoffeeStore();
-                satkaMakeCofee.selectCoffee(satkaMakeCofee);
+                satkaMakeCofee.coffeeStoreStart();
                 break;
 
             case "5":
                 System.out.println("Ваш город: Карталы...Ожидайте");
                 KartalyCoffeeStore ktMakeCoffee = new KartalyCoffeeStore();
-                ktMakeCoffee.selectCoffee(ktMakeCoffee);
+                ktMakeCoffee.coffeeStoreStart();
                 break;
 
             case "6":
                 System.out.println("Ваш город: Ижевск...Ожидайте");
                 IzevskCoffeeStore izMakeCofee = new IzevskCoffeeStore();
-                izMakeCofee.selectCoffee(izMakeCofee);
+                izMakeCofee.coffeeStoreStart();
                 break;
 
             case "7":
                 System.out.println("Ваш город: Омск...Ожидайте");
                 OmskCoffeeStore omMakeCofee = new OmskCoffeeStore();
-                omMakeCofee.selectCoffee(omMakeCofee);
+                omMakeCofee.coffeeStoreStart();
                 break;
 
             case "8":
                 System.out.println("Ваш город: Самара...Ожидайте");
                 SamaraCoffeeStore samMakeCoffee = new SamaraCoffeeStore();
-                samMakeCoffee.selectCoffee(samMakeCoffee);
+                samMakeCoffee.coffeeStoreStart();
                 break;
 
             case "9":
                 System.out.println("Ваш город: Саратов...Ожидайте");
                 SaratovCoffeeStore sarMakeCoffee = new SaratovCoffeeStore();
-                sarMakeCoffee.selectCoffee(sarMakeCoffee);
+                sarMakeCoffee.coffeeStoreStart();
                 break;
 
             default:
                 System.out.println("Ошибка. Неверное значение, попробуйте еще раз \n");
                 return 1;
         }
-
         return 0;
     }
-
-    // Выбираем город - конец
-    //======================================================
-
 
 }
