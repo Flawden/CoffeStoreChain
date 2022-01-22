@@ -1,4 +1,4 @@
-package typeOfCoffee;
+package menu;
 
 public class Coffee {
 

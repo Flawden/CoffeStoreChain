@@ -1,11 +1,6 @@
 package stores;
 
-import stores.CoffeStore;
-import typeOfCoffee.*;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Random;
+import menu.*;
 
 public class KartalyCoffeeStore extends CoffeStore {
 
@@ -23,6 +18,9 @@ public class KartalyCoffeeStore extends CoffeStore {
     public void createCoffeList() {
         listOfCoffee.add(new Coffee("Кофе"));
     }
+
+    @Override
+    public void additionalGoods() {}
 
     @Override
     public void failSituation() {

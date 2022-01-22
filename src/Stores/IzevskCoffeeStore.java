@@ -1,10 +1,6 @@
 package stores;
 
-import stores.CoffeStore;
-import typeOfCoffee.*;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import menu.*;
 
 public class IzevskCoffeeStore extends CoffeStore {
 
@@ -24,6 +20,9 @@ public class IzevskCoffeeStore extends CoffeStore {
         listOfCoffee.add(new Coffee("Макиато"));
         listOfCoffee.add(new Coffee("Латте"));
     }
+
+    @Override
+    public void additionalGoods() {}
 
     @Override
     public void failSituation() {

@@ -1,12 +1,15 @@
 package stores;
 
-import stores.CoffeStore;
-import typeOfCoffee.*;
+import menu.*;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
-public class MoscowCoffeShop extends CoffeStore {
+public class MoscowCoffeShop extends CoffeStore implements Biscuits{
+
+    BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
     public void setFailChance() {
@@ -33,6 +36,11 @@ public class MoscowCoffeShop extends CoffeStore {
     }
 
     @Override
+    public void additionalGoods() {
+        sellBiscuits();
+    }
+
+    @Override
     public void failSituation() {
         numOfSituation = rnd.nextInt(1, 3);
 
@@ -49,6 +57,27 @@ public class MoscowCoffeShop extends CoffeStore {
                 System.out.println("Приносим извенения, но наш магазин закрылся на карантин");
                 break;
             }
+        }
+    }
+
+    @Override
+    public void sellBiscuits() {
+        System.out.println("Не желаете немного печенья? (Да/Нет)");
+
+        try {
+            String answer = rd.readLine().toLowerCase();
+            if (answer.equals("да")) {
+                System.out.println("Вот ваше печенье");
+            }
+            else if(answer.equals("нет")) {
+                System.out.println("Ну на нет и суда нет.");
+            }
+            else {
+                System.out.println("Я так понимаю это нет...Ладно");
+            }
+
+        } catch (IOException e) {
+            System.out.println("Ошибка ввода");
         }
     }
 }

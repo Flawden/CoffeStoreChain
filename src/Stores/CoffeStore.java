@@ -1,9 +1,8 @@
 package stores;
 
-import typeOfCoffee.*;
+import menu.Coffee;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,7 +22,11 @@ public abstract class CoffeStore {
             //Создать непредвиденные обстоятельства
             public abstract void failSituation();
 
+            //Установить шанс непредвиденных обстоятельств
             public abstract void setFailChance();
+
+            //Дополнительные продукты к кофе
+            public abstract void additionalGoods();
 
             //Получить список коффе, для заполнения
             public abstract void createCoffeList();
@@ -34,6 +37,7 @@ public abstract class CoffeStore {
                 createCoffeList();
                 greetingCoffee();
                 Coffee cofee = selectCoffee();
+                additionalGoods();
                 waitYourCoffee(cofee);
             }
 
