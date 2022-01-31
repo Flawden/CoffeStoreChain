@@ -48,6 +48,8 @@ public abstract class CoffeStore implements Serializable {
             public abstract void createCoffeList();
 
             public final void coffeeStoreStart() {
+                zReport = 0;
+                sellBiscuitsTotal = 0;
                 greetingCoffee();
                 Coffee cofee = selectCoffee();
                 additionalGoods();

@@ -33,7 +33,7 @@ public class SelectCoffeeStore {
 
 
     public static int start() throws IOException, ClassNotFoundException {
-
+        
         deserialize();
         greetingMethod();
         if (selectCity() == 1) {
