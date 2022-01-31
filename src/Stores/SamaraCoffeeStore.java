@@ -6,7 +6,7 @@ public class SamaraCoffeeStore extends CoffeStore {
 
     @Override
     public void setCoffeeStoreName() {
-        city = "Самара";
+        city = "Samara";
     }
 
     @Override
@@ -16,12 +16,18 @@ public class SamaraCoffeeStore extends CoffeStore {
 
     @Override
     public void createCoffeList() {
-        listOfCoffee.add(new Coffee("Капучино"));
-        listOfCoffee.add(new Coffee("Макиато "));
-        listOfCoffee.add(new Coffee("Латте"));
-        listOfCoffee.add(new Coffee("Меланж"));
-        listOfCoffee.add(new Coffee("Мокка"));
-        listOfCoffee.add(new Coffee("Фраппе"));
+        listOfCoffee.add(new Coffee("Cappuccino"));
+        coffePriceList.add(30);
+        listOfCoffee.add(new Coffee("Macchiato"));
+        coffePriceList.add(40);
+        listOfCoffee.add(new Coffee("Latte"));
+        coffePriceList.add(50);
+        listOfCoffee.add(new Coffee("Melange"));
+        coffePriceList.add(60);
+        listOfCoffee.add(new Coffee("Mocha"));
+        coffePriceList.add(70);
+        listOfCoffee.add(new Coffee("Frappe"));
+        coffePriceList.add(80);
     }
 
     @Override
@@ -33,11 +39,11 @@ public class SamaraCoffeeStore extends CoffeStore {
 
         switch (numOfSituation) {
             case 1: {
-                System.out.println("Кажется ваш кофе еще не доставили. Приносим свои извенения");
+                System.out.println("It looks like your coffee hasn't been delivered yet. We apologize");
                 break;
             }
             case 2: {
-                System.out.println("Вы стали нашим 1000 посетителем. Кофе достается вам бесплатно!");
+                System.out.println("You have become our 1000 visitor. Coffee is yours for free!");
                 break;
             }
         }

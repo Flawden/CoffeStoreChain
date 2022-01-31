@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class StPetersburgCoffeeStore extends CoffeStore implements Biscuits{
 
-    BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+    protected int buiscuitPrice = 40;
 
     @Override
     public void setFailChance() {
@@ -19,21 +19,31 @@ public class StPetersburgCoffeeStore extends CoffeStore implements Biscuits{
 
     @Override
     public void setCoffeeStoreName() {
-        city = "Санкт-Петербург";
+        city = "Saint Petersburg";
     }
 
     @Override
     public void createCoffeList() {
         listOfCoffee.add(new Coffee("Cappuccino"));
+        coffePriceList.add(130);
         listOfCoffee.add(new Coffee("Macchiato "));
+        coffePriceList.add(230);
         listOfCoffee.add(new Coffee("Caffellatte"));
+        coffePriceList.add(330);
         listOfCoffee.add(new Coffee("Flat white"));
+        coffePriceList.add(340);
         listOfCoffee.add(new Coffee("Сà phê sữa đá"));
+        coffePriceList.add(300);
         listOfCoffee.add(new Coffee("Café bombón"));
+        coffePriceList.add(230);
         listOfCoffee.add(new Coffee("Wiener Espresso"));
+        coffePriceList.add(240);
         listOfCoffee.add(new Coffee("Wiener Melange"));
+        coffePriceList.add(170);
         listOfCoffee.add(new Coffee("Сaffè mocha"));
+        coffePriceList.add(190);
         listOfCoffee.add(new Coffee("Frappé"));
+        coffePriceList.add(250);
     }
 
     @Override
@@ -45,11 +55,11 @@ public class StPetersburgCoffeeStore extends CoffeStore implements Biscuits{
 
         switch (numOfSituation) {
             case 1: {
-                System.out.println("Кажется ваш кофе еще не доставили. Приносим свои извенения");
+                System.out.println("Looks like your coffee hasn't been delivered yet. We apologize");
                 break;
             }
             case 2: {
-                System.out.println("Кажется ваш кофе оказался чаем. Приносим свои извенения");
+                System.out.println("Looks like your coffee turned out to be tea. We apologize");
                 break;
             }
         }
@@ -57,20 +67,25 @@ public class StPetersburgCoffeeStore extends CoffeStore implements Biscuits{
 
     @Override
     public void sellBiscuits() {
-        System.out.println("Не хотели бы вы немного печенья к вашему кофе? (Да/Нет)");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Do you want some cookies? (Yes/No)");
 
         try {
-            String answer = rd.readLine();
-            if (answer.toLowerCase(Locale.ROOT) == "да") {
-                System.out.println("Вот ваше печенье");
-            } else if(answer.toLowerCase(Locale.ROOT) == "нет") {
-                System.out.println("Ну на нет и суда нет.");
-            } else {
-                System.out.println("Я так понимаю это нет...Ладно");
+            String answer = rd.readLine().toLowerCase();
+            if (answer.equals("yes")) {
+                System.out.println("Here is your cookie");
+                sellBiscuitsCounter++;
+                sellBiscuitsTotal+= buiscuitPrice;
+            }
+            else if(answer.equals("no")) {
+                System.out.println("Ok, let's continue.");
+            }
+            else {
+                System.out.println("I guess it was \"no\"");
             }
 
         } catch (IOException e) {
-            System.out.println("Ошибка ввода");
+            System.out.println("Incorrect value. Try again.");
         }
     }
 }

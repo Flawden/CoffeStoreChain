@@ -6,7 +6,7 @@ public class IzevskCoffeeStore extends CoffeStore {
 
     @Override
     public void setCoffeeStoreName() {
-        city = "Ижевск";
+        city = "Izhevsk";
     }
 
     @Override
@@ -16,9 +16,12 @@ public class IzevskCoffeeStore extends CoffeStore {
 
     @Override
     public void createCoffeList() {
-        listOfCoffee.add(new Coffee("Капучино"));
-        listOfCoffee.add(new Coffee("Макиато"));
-        listOfCoffee.add(new Coffee("Латте"));
+        listOfCoffee.add(new Coffee("Cappuccino"));
+        coffePriceList.add(20);
+        listOfCoffee.add(new Coffee("Macchiato"));
+        coffePriceList.add(15);
+        listOfCoffee.add(new Coffee("Latte"));
+        coffePriceList.add(30);
     }
 
     @Override
@@ -30,11 +33,11 @@ public class IzevskCoffeeStore extends CoffeStore {
 
         switch (numOfSituation) {
             case 1: {
-                System.out.println("Кажется ваш кофе еще не доставили. Мне жаль");
+                System.out.println("Looks like your coffee hasn't been delivered yet. I'm sorry");
                 break;
             }
             case 2: {
-                System.out.println("Ваш кофе был похищен злостной группой боевых ежей. Мне жаль");
+                System.out.println("Your coffee has been stolen by a vicious group of war hedgehogs. I'm sorry");
                 break;
             }
         }

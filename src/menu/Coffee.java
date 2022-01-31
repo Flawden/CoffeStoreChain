@@ -1,6 +1,8 @@
 package menu;
 
-public class Coffee {
+import java.io.Serializable;
+
+public class Coffee implements Serializable {
 
     private final String name;
 

@@ -6,7 +6,7 @@ public class KartalyCoffeeStore extends CoffeStore {
 
     @Override
     public void setCoffeeStoreName() {
-        city = "Карталы";
+        city = "Kartaly";
     }
 
     @Override
@@ -16,7 +16,8 @@ public class KartalyCoffeeStore extends CoffeStore {
 
     @Override
     public void createCoffeList() {
-        listOfCoffee.add(new Coffee("Кофе"));
+        listOfCoffee.add(new Coffee("Coffee"));
+        coffePriceList.add(50);
     }
 
     @Override
@@ -28,23 +29,23 @@ public class KartalyCoffeeStore extends CoffeStore {
 
         switch (numOfSituation) {
             case 1: {
-                System.out.println("Кажется ваш кофе еще не доставили. Сочувствую");
+                System.out.println("Looks like your coffee hasn't been delivered yet. I sympathize");
                 break;
             }
             case 2: {
-                System.out.println("Тут это... Как бы вам сказать... Ваш кофе был захвачен в плен группой террористов. Приносим свои извенения");
+                System.out.println("Your coffee has been captured by a group of terrorists. We bring our apologies");
                 break;
             }
             case 3: {
-                System.out.println("Кажется с кофе облом. Его с голодухи выпил наш официант. Приносим свои извенения");
+                System.out.println("Your coffee is drunk by a hungry waiter. We bring our apologies");
                 break;
             }
             case 4: {
-                System.out.println("Упс! Ваш кофе так долго стоял на полке, что обрел разум и убежал. Приносим свои извенения");
+                System.out.println("Oops! It seems your coffee has been sitting on the shelf for so long that it evolved, grew legs and ran away. We bring our apologies");
                 break;
             }
             case 5: {
-                System.out.println("Мы тут случайно вместо кофе сделали чай. Надеюсь вы не в обиде. Приятного аппетита!");
+                System.out.println("We accidentally made tea instead of coffee. I hope you're not offended. Bon Appetit!");
                 break;
             }
         }

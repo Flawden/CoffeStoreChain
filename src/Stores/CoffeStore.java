@@ -4,17 +4,33 @@ import menu.Coffee;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
-public abstract class CoffeStore {
+public abstract class CoffeStore implements Serializable {
 
-    Random rnd = new Random();
+    protected Random rnd = new Random();
     protected String city;
-    int failChance;
-    int numOfSituation = 0;
+    protected int failChance;
+    protected int numOfSituation = 0;
+    protected int buiscuitPrice = 0;
+    protected int sellBiscuitsCounter = 0;
+    protected int sellBiscuitsTotal = 0;
+    protected int zReport = 0;
 
     ArrayList<Coffee> listOfCoffee = new ArrayList<Coffee>();
+    ArrayList<Integer> coffeSalesCounter = new ArrayList<Integer>();
+    ArrayList<Integer> coffePriceList = new ArrayList<Integer>();
+    ArrayList<Integer> coffeSalesList = new ArrayList<Integer>();
+
+    {
+        setCoffeeStoreName();
+        setFailChance();
+        createCoffeList();
+        createCoffeSales();
+    }
 
             //Установить имя города.
             public abstract void setCoffeeStoreName();
@@ -32,13 +48,11 @@ public abstract class CoffeStore {
             public abstract void createCoffeList();
 
             public final void coffeeStoreStart() {
-                setCoffeeStoreName();
-                setFailChance();
-                createCoffeList();
                 greetingCoffee();
                 Coffee cofee = selectCoffee();
                 additionalGoods();
                 waitYourCoffee(cofee);
+                showReport();
             }
 
             public final void greetingCoffee() {
@@ -47,36 +61,32 @@ public abstract class CoffeStore {
                 outputCoffeeList();
             }
 
-            private final ArrayList<Coffee> makeCoffeList(ArrayList<String> coffeeList) {
-
-                for(String i : coffeeList) {
-                    listOfCoffee.add(new Coffee(i));
+            private final void createCoffeSales() {
+                for (int i = 0; i < listOfCoffee.size(); i++) {
+                    coffeSalesCounter.add(0);
+                    coffeSalesList.add(0);
                 }
-
-                return listOfCoffee;
             }
 
             private final void outputCoffeeList() {
                 int counter = 1;
 
                 for(Coffee i: listOfCoffee) {
-                    System.out.println(counter + ". " + i);
+                    System.out.println(counter + ". " + i + " " + coffePriceList.get(counter - 1) + " руб");
                     counter++;
                 }
-            }
-
-            private final void makeCoffee(Coffee coffee) throws InterruptedException {
-
-                Random rnd = new Random();
-                    Thread.sleep(rnd.nextInt(1000, 4000));
             }
 
             private final Coffee selectCoffee() {
                 BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
                 Coffee chooseYourDesteny = null;
+                int choise = -1;
                 while (true) {
                     try {
-                        chooseYourDesteny = listOfCoffee.get(Integer.parseInt(rd.readLine()) - 1);
+                        choise = Integer.parseInt(rd.readLine()) - 1;
+                        chooseYourDesteny = listOfCoffee.get(choise);
+                        coffeSalesCounter.set(choise, coffeSalesCounter.get(choise) + 1);
+                        coffeSalesList.set(choise, coffeSalesList.get(choise) + coffePriceList.get(choise));
                         break;
                     } catch (Exception e) {
                         System.out.println("Данной позиции не существует. Попробуйте еще раз.");
@@ -88,17 +98,36 @@ public abstract class CoffeStore {
 
             private final void waitYourCoffee(Coffee coffee) {
                 try {
-                    System.out.println("Ваш " + coffee + " скоро будет готов. Ожидайте");
+                    System.out.println("Your " + coffee + " will be ready soon. Please wait.");
                     Thread.sleep(rnd.nextInt(1000, 4000));
                     if (rnd.nextInt(1, 100/failChance) == 1) {
                         failSituation();
                     }
                     else {
-                        System.out.println("Ваш " + coffee + " готов. Приятного аппетита!");
+                        System.out.println("Your " + coffee + " is ready. Bon appetit!");
                     }
                 } catch (InterruptedException e) {
-                    System.out.println("Ваш официант споткнулся и уронил ваш кофе. Приносим свои извинения");
+                    System.out.println("Your waiter tripped and dropped your coffee. We apologize");
                 }
+            }
+
+            public final void showReport() {
+                System.out.println();
+                for(int i = 0; i < listOfCoffee.size(); i++) {
+                    System.out.println("Total " + listOfCoffee.get(i) + " sold: " + coffeSalesCounter.get(i) + " items," +
+                            " for the amount " + coffeSalesList.get(i));
+                    zReport+= coffeSalesList.get(i);
+                }
+
+                if (Arrays.toString(this.getClass().getInterfaces()).equals("[interface menu.Biscuits]")) {
+                    zReport += sellBiscuitsTotal;
+                    System.out.println("\nCookies were sold: " + sellBiscuitsCounter + ", for the amount " + sellBiscuitsTotal);
+                    System.out.println("Total revenue: " + zReport);
+                }
+                else {
+                    System.out.println("Total revenue: " + zReport);
+                }
+
             }
 
 }

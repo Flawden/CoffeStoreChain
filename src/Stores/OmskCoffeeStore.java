@@ -9,7 +9,7 @@ import java.util.Locale;
 
 public class OmskCoffeeStore extends CoffeStore implements Biscuits {
 
-    BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+    protected int buiscuitPrice = 20;
 
     @Override
     public void setFailChance() {
@@ -18,18 +18,25 @@ public class OmskCoffeeStore extends CoffeStore implements Biscuits {
 
     @Override
     public void setCoffeeStoreName() {
-        city = "Омск";
+        city = "Omsk";
     }
 
     @Override
     public void createCoffeList() {
         listOfCoffee.add(new Coffee("Flat white"));
-        listOfCoffee.add(new Coffee("Вьетнамский кофе"));
-        listOfCoffee.add(new Coffee("Кафе бомбон"));
-        listOfCoffee.add(new Coffee("Кофе по-венски "));
-        listOfCoffee.add(new Coffee("Меланж"));
-        listOfCoffee.add(new Coffee("Мокка"));
-        listOfCoffee.add(new Coffee("Фраппе"));
+        coffePriceList.add(50);
+        listOfCoffee.add(new Coffee("Vietnamese coffee"));
+        coffePriceList.add(80);
+        listOfCoffee.add(new Coffee("Cafe bombon"));
+        coffePriceList.add(40);
+        listOfCoffee.add(new Coffee("Viennese coffee"));
+        coffePriceList.add(60);
+        listOfCoffee.add(new Coffee("Melange"));
+        coffePriceList.add(35);
+        listOfCoffee.add(new Coffee("Mocha"));
+        coffePriceList.add(50);
+        listOfCoffee.add(new Coffee("Frappe"));
+        coffePriceList.add(60);
     }
 
     @Override
@@ -41,11 +48,11 @@ public class OmskCoffeeStore extends CoffeStore implements Biscuits {
 
         switch (numOfSituation) {
             case 1: {
-                System.out.println("Ваш кофе был отравлен за попытку покинуть город Омск.");
+                System.out.println("Your coffee was poisoned for trying to leave the city of Omsk.");
                 break;
             }
             case 2: {
-                System.out.println("Наше кофе было захвачено группой злобных голубей. Нам жаль");
+                System.out.println("Our coffee was taken over by a group of vicious pigeons. We're sorry");
                 break;
             }
         }
@@ -53,20 +60,25 @@ public class OmskCoffeeStore extends CoffeStore implements Biscuits {
 
     @Override
     public void sellBiscuits() {
-        System.out.println("Не желаете немного печенья? (Да/Нет)");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Do you want some cookies? (Yes/No)");
 
         try {
-            String answer = rd.readLine();
-            if (answer.toLowerCase(Locale.ROOT) == "да") {
-                System.out.println("Вот ваше печенье");
-            } else if(answer.toLowerCase(Locale.ROOT) == "нет") {
-                System.out.println("Ну на нет и суда нет.");
-            } else {
-                System.out.println("Я так понимаю это нет...Ладно");
+            String answer = rd.readLine().toLowerCase();
+            if (answer.equals("yes")) {
+                System.out.println("Here is your cookie");
+                sellBiscuitsCounter++;
+                sellBiscuitsTotal+= buiscuitPrice;
+            }
+            else if(answer.equals("no")) {
+                System.out.println("Ok, let's continue.");
+            }
+            else {
+                System.out.println("I guess it was \"no\"");
             }
 
         } catch (IOException e) {
-            System.out.println("Ошибка ввода");
+            System.out.println("Incorrect value. Try again.");
         }
     }
 }

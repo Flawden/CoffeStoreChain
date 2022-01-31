@@ -9,11 +9,11 @@ import java.util.Locale;
 
 public class ChelyabinskCoffeeStore extends CoffeStore implements Biscuits{
 
-    BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+    protected int buiscuitPrice = 15;
 
     @Override
     public void setCoffeeStoreName() {
-        city = "Челябинск";
+        city = "Chelyabinsk";
     }
 
     @Override
@@ -23,11 +23,16 @@ public class ChelyabinskCoffeeStore extends CoffeStore implements Biscuits{
 
     @Override
     public void createCoffeList() {
-        listOfCoffee.add(new Coffee("Капучино"));
-        listOfCoffee.add(new Coffee("Макиато"));
-        listOfCoffee.add(new Coffee("Латте"));
+        listOfCoffee.add(new Coffee("Cappuccino"));
+        coffePriceList.add(30);
+        listOfCoffee.add(new Coffee("Macchiato"));
+        coffePriceList.add(40);
+        listOfCoffee.add(new Coffee("Latte"));
+        coffePriceList.add(25);
         listOfCoffee.add(new Coffee("Flat white"));
-        listOfCoffee.add(new Coffee("Вьетнамский кофе"));
+        coffePriceList.add(50);
+        listOfCoffee.add(new Coffee("Vietnamese coffee"));
+        coffePriceList.add(15);
     }
 
     @Override
@@ -41,15 +46,15 @@ public class ChelyabinskCoffeeStore extends CoffeStore implements Biscuits{
 
         switch (numOfSituation) {
             case 1: {
-                System.out.println("Кажется ваш кофе еще не доставили. Приносим свои извинения");
+                System.out.println("Looks like your coffee hasn't been delivered yet. We apologize");
                 break;
             }
             case 2: {
-                System.out.println("Прошу прощения, но вашего напитка не оказалось в наличии");
+                System.out.println("I'm sorry, but your drink was out of stock.");
                 break;
             }
             case 3: {
-                System.out.println("Кажется ваш официант убежал с вашими деньгами.");
+                System.out.println("Looks like your waiter ran off with your money..");
                 break;
             }
         }
@@ -57,23 +62,26 @@ public class ChelyabinskCoffeeStore extends CoffeStore implements Biscuits{
 
     @Override
     public void sellBiscuits() {
-
-        System.out.println("Не желаете немного печенья? (Да/Нет)");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Do you want some cookies? (Yes/No)");
 
         try {
-            String answer = rd.readLine();
-            if (answer.toLowerCase(Locale.ROOT) == "да") {
-                System.out.println("Вот ваше печенье");
-            } else if(answer.toLowerCase(Locale.ROOT) == "нет") {
-                System.out.println("Ну на нет и суда нет.");
-            } else {
-                System.out.println("Я так понимаю это нет...Ладно");
+            String answer = rd.readLine().toLowerCase();
+            if (answer.equals("yes")) {
+                System.out.println("There are your cookies");
+                sellBiscuitsCounter++;
+                sellBiscuitsTotal+= buiscuitPrice;
+            }
+            else if(answer.equals("no")) {
+                System.out.println("Ok, let's continue.");
+            }
+            else {
+                System.out.println("I guess it was \"no\"");
             }
 
         } catch (IOException e) {
-            System.out.println("Ошибка ввода");
+            System.out.println("Incorrect value. Try again.");
         }
-
-
     }
+
 }
