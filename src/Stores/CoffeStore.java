@@ -56,8 +56,8 @@ public abstract class CoffeStore implements Serializable {
             }
 
             public final void greetingCoffee() {
-                System.out.println("Здравствуйте! Вы в кофе города " + city + "\n" +
-                        "Введите номер напитка:");
+                System.out.println("Hello! You are in coffee town " + city + "\n" +
+                        "Enter drink number:");
                 outputCoffeeList();
             }
 
@@ -72,7 +72,7 @@ public abstract class CoffeStore implements Serializable {
                 int counter = 1;
 
                 for(Coffee i: listOfCoffee) {
-                    System.out.println(counter + ". " + i + " " + coffePriceList.get(counter - 1) + " руб");
+                    System.out.println(counter + ". " + i + " " + coffePriceList.get(counter - 1) + " rubles");
                     counter++;
                 }
             }
@@ -89,7 +89,7 @@ public abstract class CoffeStore implements Serializable {
                         coffeSalesList.set(choise, coffeSalesList.get(choise) + coffePriceList.get(choise));
                         break;
                     } catch (Exception e) {
-                        System.out.println("Данной позиции не существует. Попробуйте еще раз.");
+                        System.out.println("This position does not exist. try again.");
                     }
                 }
                 return chooseYourDesteny;
