@@ -61,7 +61,7 @@ public class OmskCoffeeStore extends CoffeStore implements Biscuits {
     @Override
     public void sellBiscuits() {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Do you want some cookies? (Yes/No)");
+        System.out.println("Would you like some cookies for " + buiscuitPrice + " roubles? (Yes/No)");
 
         try {
             String answer = rd.readLine().toLowerCase();
